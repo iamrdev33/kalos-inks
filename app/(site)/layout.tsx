@@ -1,6 +1,5 @@
 import '@/global.css';
 import type { Metadata } from "next";
-import { inter, lusitana } from '../ui/fonts';
 import Navbar from './components/navbar';
 
 export const metadata: Metadata = {
