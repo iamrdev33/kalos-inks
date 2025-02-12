@@ -9,7 +9,15 @@ export default defineType({
     preview: {
         select: {
             title: 'name',
-            subtitle: 'clientName'
+            subtitle: 'client.name',
+            media: 'photo',
+        },
+        prepare({ title, subtitle, media }) {
+            return {
+                title,
+                subtitle,
+                media: media || FaOtter,
+            }
         }
     },
     fields: [
@@ -31,15 +39,19 @@ export default defineType({
             options: { hotspot: true },
         }),
         defineField({
-            name: 'clientName',
-            title: 'Client Name',
-            type: 'string',
+            name: 'client',
+            title: 'Client',
+            type: 'reference',
+            to: [{ type: 'client' }],
+            options: {
+                filter: 'defined(name)',
+            },
         }),
         defineField({
-            name: 'clientBrief',
-            title: 'Client Brief',
-            placeholder: "Brief reminder (1-2 lines) of the client and their story",
-            type: 'text',
+            name: 'story',
+            title: 'Story behind the tattoo',
+            description: 'If you know about it..',
+            type: 'string',
         }),
         defineField({
             name: 'price',
@@ -56,6 +68,37 @@ export default defineType({
             name: 'isOriginalDesign',
             title: 'Original Design?',
             type: 'boolean',
+        }),
+        defineField({
+            name: 'tattooStyle',
+            title: 'Tattoo Style',
+            type: 'string',
+            // type: 'array',
+            // of: [{ type: 'string' }],
+            options: {
+                list: [
+                    { title: 'Fine Line', value: 'fine-line' },
+                    { title: 'Single Needle', value: 'single-needle' },
+                    { title: 'Dot Work', value: 'dot-work' },
+                    { title: 'Lettering', value: 'lettering' },
+                    { title: 'Ornamental', value: 'ornamental' },
+                    { title: 'Realistic', value: 'realistic' },
+                    { title: 'Microrealistic', value: 'microrealistic' },
+                    { title: 'Coloured', value: 'coloured' },
+                    { title: 'Minimalistic', value: 'minimalistic' },
+                    { title: 'Geometric', value: 'geometric' },
+                    { title: 'Abstract', value: 'abstract' },
+                    { title: 'Negative space', value: 'negative-space' },
+                    { title: 'Black & Grey', value: 'black-grey' },
+                    { title: 'Other', value: 'other' },
+                ],
+            },
+        }),
+        defineField({
+            name: 'customStyle',
+            title: 'Custom Style',
+            type: 'string',
+            hidden: ({ parent }) => parent?.tattooStyle !== 'other',
         }),
     ],
 })
