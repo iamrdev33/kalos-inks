@@ -9,7 +9,15 @@ export default defineType({
     preview: {
         select: {
             title: 'name',
-            subtitle: 'clientName'
+            subtitle: 'client.name',
+            media: 'photo',
+        },
+        prepare({ title, subtitle, media }) {
+            return {
+                title,
+                subtitle,
+                media: media || FaOtter,
+            }
         }
     },
     fields: [
@@ -34,9 +42,9 @@ export default defineType({
             name: 'client',
             title: 'Client',
             type: 'reference',
-            to: [{ type: 'client' }], // This links the tattoo to a client
+            to: [{ type: 'client' }],
             options: {
-                filter: 'defined(name)', // Only show clients with a name
+                filter: 'defined(name)',
             },
         }),
         defineField({
