@@ -5,6 +5,7 @@ import Navbar from './components/navbar';
 export const metadata: Metadata = {
   title: "Kalos Inks",
   description: "An interactive portfolio showcasing Kalos' work and client reviews.",
+  icons: "/favicon.ico"
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
