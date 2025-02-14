@@ -16,6 +16,10 @@ const config: Config = {
         text: 'var(--text-color)',
         grey: 'var(--grey-color)',
       },
+      fontFamily: {
+        main: ['var(--main-font)'],
+        kalos: ['var(--kalos-font)']
+      }
     },
     keyframes: {
       shimmer: {

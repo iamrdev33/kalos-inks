@@ -40,7 +40,7 @@ export default function Navbar() {
        ${scrolled ? "bg-grey shadow-md" : "bg-transparent"
       } ${visible ? "translate-y-0" : "-translate-y-full"} `}>
       <h1 className="text-primary text-5xl">
-        <span style={{ fontFamily: 'Blacksword' }}>Kalos</span>
+        <span className='font-kalos'>Kalos</span>
         <span> Inks</span>
       </h1>
       <ul className="flex justify-center items-center gap-3">
@@ -59,11 +59,13 @@ export default function Navbar() {
           <Link
             href={'https://www.facebook.com/profile.php?id=61572642881407'}
             target="_blank"
-            >
+          >
             <FaFacebookF />
           </Link>
           <Link
-            href={'https://instagram.com/kalos_inks'}>
+            href={'https://instagram.com/kalos_inks'}
+            target="_blank"
+            >
             <FaInstagram />
           </Link>
         </li>

@@ -1,6 +1,7 @@
 import '@/global.css';
 import type { Metadata } from "next";
 import Navbar from './components/navbar';
+import { kalosFont, mainFont } from '../fonts';
 
 export const metadata: Metadata = {
   title: "Kalos Inks",
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>
+      <body className={`${kalosFont.variable} ${mainFont.variable}`}>
         <Navbar />
         <main className="container">{children}</main>
       </body>
