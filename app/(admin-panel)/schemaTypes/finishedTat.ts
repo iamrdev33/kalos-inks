@@ -43,10 +43,7 @@ export default defineType({
             title: 'Client',
             type: 'reference',
             to: [{ type: 'client' }],
-            options: {
-                filter: 'defined(name)',
-            },
-        }),
+        } as any),
         defineField({
             name: 'story',
             title: 'Story behind the tattoo',
@@ -61,7 +58,7 @@ export default defineType({
         defineField({
             name: 'time',
             title: 'Time Taken',
-            placeholder: 'How much time did it take you? (Breaks not included) e.g. 2:30 or 0:45',
+            description: 'How much time did it take you? (Breaks not included) e.g. 2:30 or 0:45',
             type: 'string',
         }),
         defineField({

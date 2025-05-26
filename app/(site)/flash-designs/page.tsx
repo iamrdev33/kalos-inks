@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { Suspense, useState } from 'react';
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -10,7 +10,7 @@ import { X, DollarSign } from 'lucide-react';
 import { flashDesigns } from '@/lib/utils';
 import { cn } from '@/lib/utils';
 
-export default function FlashDesigns() {
+function FlashDesignsContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [selectedDesign, setSelectedDesign] = useState<number | null>(null);
@@ -256,5 +256,13 @@ export default function FlashDesigns() {
         )}
       </AnimatePresence>
     </div>
+  );
+}
+
+export default function FlashDesigns() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <FlashDesignsContent />
+    </Suspense>
   );
 }

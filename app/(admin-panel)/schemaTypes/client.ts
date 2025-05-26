@@ -15,8 +15,8 @@ export default defineType({
     defineField({
       name: 'brief',
       title: 'Client Brief',
-      placeholder: "Brief reminder of the client",
       type: 'text',
+      description: 'Brief reminder of the client',
     }),
     defineField({
       name: 'contact',
