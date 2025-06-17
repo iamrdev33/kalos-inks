@@ -11,12 +11,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { Calendar } from "@/components/ui/calendar";
 import { Progress } from "@/components/ui/progress";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { CalendarIcon, UploadCloud, Check, ChevronRight, ChevronLeft } from "lucide-react";
+import { UploadCloud, Check, ChevronRight, ChevronLeft } from "lucide-react";
 import { services } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 
@@ -29,7 +28,6 @@ const steps = [
 ];
 
 export default function Booking() {
-  const searchParams = useSearchParams();
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(1);
   const [showRules, setShowRules] = useState(false);
@@ -49,6 +47,7 @@ export default function Booking() {
     designId: "",
     kalosTattoo: false,
   });
+  const [selectedDesign, setSelectedDesign] = useState<any>(null);
 
   useEffect(() => {
     const storedDesign = sessionStorage.getItem('selectedReadyMadeDesign');
@@ -58,6 +57,7 @@ export default function Booking() {
       setFormData(prev => ({ ...prev, service: 'ready-made-design' }));
       nextStep();
       const design = JSON.parse(storedDesign);
+      setSelectedDesign(design);
       setFormData(prev => ({ ...prev, designId: design.id }));
       sessionStorage.removeItem('selectedReadyMadeDesign');
     }
@@ -192,24 +192,39 @@ export default function Booking() {
                   case "custom-design":
                     return "Share your custom tattoo idea. The more details you provide, the better we can bring your vision to life.";
                   case "ready-made-design":
-                    return "Select from our pre-designed tattoos. Let us know if you'd like any modifications to the design.";
+                    return "You've selected the following design:";
                   default:
                     return "Tell us what you have in mind. The more details, the better we can prepare.";
                 }
               })()}
             </p>
 
-            {(formData.service === "custom-design" || formData.service === "cover-up") && (
-              <div className="mt-4 p-4 bg-purple-50 border border-purple-200 rounded-lg">
-                <div className="flex items-center gap-2 text-sm">
-                  <span className="text-gray-700 font-medium">Confused?</span>
-                  <Button
-                    variant="link"
-                    className="p-0 h-auto text-purple-700 hover:text-purple-800 font-medium"
-                    onClick={() => setFormData({ ...formData, service: "consultation" })}
-                  >
-                    Book a consultation session
-                  </Button>
+            {formData.service === "ready-made-design" && selectedDesign && (
+              <div className="mt-6 p-6 bg-purple-50 border border-purple-200 rounded-lg">
+                <h3 className="text-lg font-semibold mb-4">Selected Design</h3>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="relative h-[300px] rounded-lg overflow-hidden">
+                    <Image
+                      src={selectedDesign.image}
+                      alt={selectedDesign.title}
+                      className="object-cover"
+                      fill
+                    />
+                  </div>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-medium text-gray-700">Design Name</h4>
+                      <p className="text-lg font-semibold">{selectedDesign.title}</p>
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-gray-700">Category</h4>
+                      <p className="text-lg font-semibold capitalize">{selectedDesign.category}</p>
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-gray-700">Price</h4>
+                      <p className="text-lg font-semibold text-purple-700">${selectedDesign.price}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
@@ -275,7 +290,7 @@ export default function Booking() {
 
             <div className="space-y-6 mt-8">
               <div>
-                <Label htmlFor="details">Describe your tattoo idea</Label>
+                <Label htmlFor="details">Notes for the artist</Label>
                 <Textarea
                   id="details"
                   name="details"
@@ -286,50 +301,66 @@ export default function Booking() {
                 />
               </div>
 
-              <div>
-                <Label htmlFor="reference">Upload reference images (optional)</Label>
-                <div
-                  className={cn(
-                    "border-2 border-dashed rounded-lg p-8 text-center cursor-pointer hover:bg-gray-50 transition-colors",
-                    formData.referenceImage ? "border-purple-300" : "border-gray-300"
-                  )}
-                  onClick={() => document.getElementById("reference")?.click()}
-                >
-                  <input
-                    type="file"
-                    id="reference"
-                    className="hidden"
-                    accept="image/*"
-                    onChange={handleFileChange}
-                  />
+              {formData.service !== 'ready-made-design' &&
+                <div>
+                  <Label htmlFor="reference">
+                    {(() => {
+                      switch (formData.service) {
+                        case "custom-design":
+                          return "Upload reference images (optional)";
+                        case "cover-up":
+                          return "Upload images of your old tattoo/scar and optional references for the new one.";
+                        case "retouch":
+                          return "Upload images of your tattoo.";
+                        default:
+                          return "";
+                      }
+                    })()}
+                  </Label>
 
-                  {formData.referenceImage ? (
-                    <div className="space-y-2">
-                      <div className="w-16 h-16 rounded bg-purple-100 flex items-center justify-center mx-auto">
-                        <Check className="w-8 h-8 text-purple-700" />
+                  <div
+                    className={cn(
+                      "border-2 border-dashed rounded-lg p-8 text-center cursor-pointer hover:bg-gray-50 transition-colors",
+                      formData.referenceImage ? "border-purple-300" : "border-gray-300"
+                    )}
+                    onClick={() => document.getElementById("reference")?.click()}
+                  >
+                    <input
+                      type="file"
+                      id="reference"
+                      className="hidden"
+                      accept="image/*"
+                      onChange={handleFileChange}
+                    />
+
+                    {formData.referenceImage ? (
+                      <div className="space-y-2">
+                        <div className="w-16 h-16 rounded bg-purple-100 flex items-center justify-center mx-auto">
+                          <Check className="w-8 h-8 text-purple-700" />
+                        </div>
+                        <p className="text-sm font-medium text-gray-900">
+                          {formData.referenceImage.name}
+                        </p>
+                        <p className="text-xs text-gray-500">
+                          Click to change file
+                        </p>
                       </div>
-                      <p className="text-sm font-medium text-gray-900">
-                        {formData.referenceImage.name}
-                      </p>
-                      <p className="text-xs text-gray-500">
-                        Click to change file
-                      </p>
-                    </div>
-                  ) : (
-                    <div className="space-y-2">
-                      <div className="w-16 h-16 rounded bg-gray-100 flex items-center justify-center mx-auto">
-                        <UploadCloud className="w-8 h-8 text-gray-400" />
+                    ) : (
+                      <div className="space-y-2">
+                        <div className="w-16 h-16 rounded bg-gray-100 flex items-center justify-center mx-auto">
+                          <UploadCloud className="w-8 h-8 text-gray-400" />
+                        </div>
+                        <p className="text-sm font-medium text-gray-900">
+                          Click to upload reference images
+                        </p>
+                        <p className="text-xs text-gray-500">
+                          PNG, JPG up to 10MB
+                        </p>
                       </div>
-                      <p className="text-sm font-medium text-gray-900">
-                        Click to upload reference images
-                      </p>
-                      <p className="text-xs text-gray-500">
-                        PNG, JPG up to 10MB
-                      </p>
-                    </div>
-                  )}
+                    )}
+                  </div>
                 </div>
-              </div>
+              }
             </div>
           </div>
         );
