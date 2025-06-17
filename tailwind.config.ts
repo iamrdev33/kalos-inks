@@ -68,6 +68,10 @@ const config: Config = {
           950: '#2a0047',
         },
       },
+      fontFamily: {
+        main: ['var(--main-font)'],
+        kalos: ['var(--kalos-font)']
+      },
       keyframes: {
         'accordion-down': {
           from: { height: '0' },

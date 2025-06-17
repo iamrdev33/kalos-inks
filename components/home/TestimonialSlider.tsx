@@ -57,7 +57,7 @@ export default function TestimonialSlider() {
           title="What Our Clients Say" 
           subtitle="We take pride in delivering exceptional experiences that leave our clients satisfied and coming back for more."
           center
-          className="text-white"
+          color="white"
         />
         
         <div 
@@ -148,7 +148,7 @@ export default function TestimonialSlider() {
         </div>
 
         <div className="mt-12 text-center">
-          <Button asChild variant="outline" size="lg" className="border-white text-white hover:bg-white/10">
+          <Button asChild variant="outline" size="lg" className="border-white hover:text-white hover:bg-white/10 text-purple-700">
             <Link href="/reviews">
               See All Reviews
               <ArrowRight className="ml-2 h-5 w-5" />

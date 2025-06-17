@@ -66,9 +66,6 @@ export default function Services() {
                 <h3 className="text-xl font-bold mb-2">{service.title}</h3>
                 <p className="text-sm text-gray-200 mb-4">{service.description}</p>
                 <div className="flex justify-between items-center">
-                  <p className="text-sm text-purple-200">
-                    Starting at <span className="font-semibold">${service.minPrice}</span>
-                  </p>
                   <motion.div
                     initial={{ opacity: 0, x: -10 }}
                     animate={hoveredService === service.id ? 

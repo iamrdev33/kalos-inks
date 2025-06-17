@@ -5,6 +5,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { cn } from '@/lib/utils';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import { kalosFont, mainFont } from '../fonts';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -15,14 +16,14 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: 'Kalos Inks | Premium Tattoo Studio',
-  description: 'Kalos Inks is a premier tattoo studio specializing in custom designs, cover-ups, retouches, and piercings. Book your appointment today.',
-  keywords: 'tattoo, tattoo studio, custom tattoo, tattoo design, cover-up, retouch, piercing, Kalos Inks',
+  description: 'Kalos Inks is a premier tattoo studio specializing in custom designs, ready-made designs, cover-ups and retouches. Book your appointment today.',
+  keywords: 'tattoo, tattoo studio, custom tattoo, tattoo design, cover-up, retouch, piercing, Kalos Inks, Kalos',
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://kalosinks.com',
     title: 'Kalos Inks | Premium Tattoo Studio',
-    description: 'Kalos Inks is a premier tattoo studio specializing in custom designs, cover-ups, retouches, and piercings.',
+    description: 'Kalos Inks is a premier tattoo studio specializing in cucustom designs, ready-made designs, cover-ups and retouches.',
     images: [
       {
         url: '/images/og-image.jpg',
@@ -41,7 +42,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={cn(inter.className, "bg-white text-gray-900 min-h-screen flex flex-col")}>
+      <body className={cn(inter.className, `bg-white text-gray-900 min-h-screen flex flex-col ${kalosFont.variable} ${mainFont.variable}`)}>
+
         <Navbar />
         <main className="flex-grow">
           {children}

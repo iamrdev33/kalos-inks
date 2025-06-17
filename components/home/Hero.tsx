@@ -71,7 +71,7 @@ export default function Hero() {
             <Button asChild size="xl" variant="gradient" className="shadow-lg">
               <Link href="/booking">Book Your Session</Link>
             </Button>
-            <Button asChild size="xl" variant="outline" className="border-white text-white hover:bg-white/10">
+            <Button asChild size="xl" variant="outline" className="border-white text-purple-900 hover:bg-white/10">
               <Link href="/portfolio">Explore Our Work</Link>
             </Button>
           </div>

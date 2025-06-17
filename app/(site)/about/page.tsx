@@ -76,7 +76,7 @@ export default function About() {
               transition={{ duration: 0.8 }}
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                <span className="gradient-text">Our Story</span>
+                <span className="gradient-text-purple">Our Story</span>
               </h2>
               <p className="text-gray-700 mb-6">
                 Kalos Inks was born from a passion for creating unique, meaningful art that becomes a part of our clients' personal stories. With over a decade of experience in the tattoo industry, our studio combines traditional techniques with modern innovation.

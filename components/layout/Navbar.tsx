@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import Logo from '../Logo';
 
 const links = [
   { href: '/', label: 'Home' },
@@ -13,7 +14,7 @@ const links = [
   { href: '/about', label: 'About' },
   { href: '/education', label: 'Education' },
   { href: '/reviews', label: 'Reviews' },
-  { href: '/flash-designs', label: 'Flash Designs' },
+  { href: '/ready-made-designs', label: 'Ready-Made Designs' },
   { href: '/faq', label: 'FAQ' },
 ];
 
@@ -57,7 +58,7 @@ export default function Navbar() {
 
   return (
     <header>
-      <motion.nav 
+      <motion.nav
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           isScrolled ? "glass-morphism py-3" : "py-5"
@@ -67,18 +68,21 @@ export default function Navbar() {
         variants={navVariants}
       >
         <div className="container flex justify-between items-center">
-          <Link href="/" className="font-bold text-2xl z-50">
-            <span className="gradient-text">Kalos</span> Inks
+          <Link href="/" className="z-50">
+            <div className={cn("h-8 transition-all duration-300", isScrolled ? "h-10" : "h-12")}>
+              <Logo />
+            </div>
+            {/* <span className="gradient-text-purple font-kalos">Kalos</span> Inks */}
           </Link>
 
           {/* Desktop Navigation */}
-          <motion.div 
+          <motion.div
             className="hidden md:flex items-center space-x-8"
             variants={listVariants}
           >
             {links.map((link) => (
               <motion.div key={link.href} variants={itemVariants}>
-                <Link 
+                <Link
                   href={link.href}
                   className="text-gray-800 hover:text-purple-700 transition-colors duration-300"
                 >
@@ -95,7 +99,7 @@ export default function Navbar() {
 
           {/* Mobile Menu Button */}
           <div className="md:hidden z-50">
-            <button 
+            <button
               onClick={toggleMobileMenu}
               className="text-gray-800 focus:outline-none"
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
@@ -123,7 +127,7 @@ export default function Navbar() {
               >
                 {links.map((link) => (
                   <motion.div key={link.href} variants={itemVariants}>
-                    <Link 
+                    <Link
                       href={link.href}
                       className="text-gray-800 hover:text-purple-700 transition-colors duration-300"
                       onClick={() => setIsMobileMenuOpen(false)}
@@ -144,7 +148,7 @@ export default function Navbar() {
           )}
         </AnimatePresence>
       </motion.nav>
-      
+
       {/* Spacer for fixed navbar */}
       <div className="h-20"></div>
     </header>

@@ -62,7 +62,7 @@ export default function BookingCTA() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Bring Your Tattoo Vision to Life?</h2>
+          <h2 className="text-4xl md:text-5xl gradient-text-white font-bold mb-6">Ready to Bring Your Tattoo Vision to Life?</h2>
           <p className="text-xl mb-10 text-purple-100 max-w-2xl mx-auto">
             Book your consultation today and take the first step towards wearable art that tells your unique story.
           </p>
@@ -71,7 +71,7 @@ export default function BookingCTA() {
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <Button asChild size="xl" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-purple-700">
+            <Button asChild size="xl" variant="outline" className="border-2 border-white text-purple-700 hover:bg-white hover:text-purple-700">
               <Link href="/booking">Book Your Session Now</Link>
             </Button>
           </motion.div>

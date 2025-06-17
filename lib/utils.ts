@@ -72,7 +72,7 @@ export const portfolio = [
   }
 ];
 
-export const flashDesigns = [
+export const readyMadeDesigns = [
   {
     id: 1,
     title: 'Mystic Rose',
@@ -217,35 +217,30 @@ export const services = [
     title: 'Custom Design',
     description: 'Collaborate with our artist to create a unique, personalized tattoo design that reflects your vision and style.',
     image: 'https://images.pexels.com/photos/1604869/pexels-photo-1604869.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    minPrice: 200
   },
   {
-    id: 'flash-designs',
-    title: 'Flash Designs',
-    description: 'Choose from our collection of pre-designed artwork for a ready-to-go tattoo experience.',
+    id: 'ready-made-design',
+    title: 'Ready-Made Design',
+    description: 'Choose from our collection of pre-designed artwork for a ready-to-go piece.',
     image: 'https://images.pexels.com/photos/4123590/pexels-photo-4123590.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    minPrice: 100
   },
   {
     id: 'cover-up',
     title: 'Cover-Up',
-    description: 'Transform unwanted tattoos into beautiful new designs that completely conceal the original artwork.',
+    description: 'Transform scars or unwanted tattoos into new designs that completely conceal the old one.',
     image: 'https://images.pexels.com/photos/4123587/pexels-photo-4123587.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    minPrice: 250
   },
   {
     id: 'retouch',
-    title: 'Retouch',
-    description: 'Refresh and revitalize faded or aging tattoos to bring back their original vibrancy and detail.',
+    title: 'Retouch (For healed tattoos)',
+    description: 'Refresh faded or aging tattoos to bring back their vibrancy and details.',
     image: 'https://images.pexels.com/photos/4125615/pexels-photo-4125615.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    minPrice: 80
   },
   {
-    id: 'piercings',
-    title: 'Piercings',
-    description: 'Professional body piercing services using high-quality jewelry and sterile techniques.',
+    id: 'consultation',
+    title: 'Consultation',
+    description: 'Consult our artist to discuss your tattoo ideas and get a quote.',
     image: 'https://images.pexels.com/photos/1435397/pexels-photo-1435397.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    minPrice: 40
   }
 ];
 

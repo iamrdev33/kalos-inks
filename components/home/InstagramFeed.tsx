@@ -30,13 +30,13 @@ export default function InstagramFeed() {
         
         <div className="flex items-center justify-center mb-8">
           <a 
-            href="https://instagram.com" 
+            href="https://instagram.com/kalos_inks" 
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-purple-700 hover:text-purple-900 transition-colors"
           >
             <Instagram className="w-5 h-5" />
-            <span className="font-medium">@kalosinks</span>
+            <span className="font-medium">@kalos_inks</span>
           </a>
         </div>
         

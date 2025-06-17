@@ -10,7 +10,7 @@ export default function Footer() {
           <div className="space-y-4">
             <Link href="/" className="inline-block">
               <h3 className="text-2xl font-bold">
-                <span className="gradient-text">Kalos</span> Inks
+                <span className="gradient-text-purple">Kalos</span> Inks
               </h3>
             </Link>
             <p className="text-gray-600">
@@ -69,10 +69,10 @@ export default function Footer() {
               </li>
               <li>
                 <Link 
-                  href="/flash-designs" 
+                  href="/ready-made-designs" 
                   className="text-gray-600 hover:text-purple-700 transition-colors"
                 >
-                  Flash Designs
+                  Ready-Made Designs
                 </Link>
               </li>
               <li>

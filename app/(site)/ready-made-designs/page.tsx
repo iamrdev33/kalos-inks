@@ -7,10 +7,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { SectionHeading } from '@/components/ui/section-heading';
 import { Button } from '@/components/ui/button';
 import { X, DollarSign } from 'lucide-react';
-import { flashDesigns } from '@/lib/utils';
+import { readyMadeDesigns } from '@/lib/utils';
 import { cn } from '@/lib/utils';
 
-function FlashDesignsContent() {
+function ReadyMadeDesignsContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [selectedDesign, setSelectedDesign] = useState<number | null>(null);
@@ -28,18 +28,15 @@ function FlashDesignsContent() {
   };
 
   const handleDesignSelect = (design: any) => {
-    if (isBookingFlow) {
-      // Store selected design in sessionStorage
-      sessionStorage.setItem('selectedFlashDesign', JSON.stringify(design));
-      router.push('/booking?step=2'); // Skip service selection
-    } else if (design.available) {
-      router.push(`/booking?design=${design.id}`);
+    if (design.available) {
+      sessionStorage.setItem('selectedReadyMadeDesign', JSON.stringify(design));
+      router.push('/booking');
     }
   };
 
-  const categories = ['all', ...new Set(flashDesigns.map(item => item.category))];
-  
-  const filteredDesigns = flashDesigns.filter(design => 
+  const categories = ['all', ...new Set(readyMadeDesigns.map(item => item.category))];
+
+  const filteredDesigns = readyMadeDesigns.filter(design =>
     activeFilter === 'all' || design.category === activeFilter
   );
 
@@ -53,7 +50,7 @@ function FlashDesignsContent() {
       }
     }
   };
-  
+
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 }
@@ -62,14 +59,14 @@ function FlashDesignsContent() {
   return (
     <div className="min-h-screen py-20">
       <div className="container">
-        <SectionHeading 
+        <SectionHeading
           title={isBookingFlow ? "Select Your Flash Design" : "Flash Designs"}
-          subtitle={isBookingFlow 
+          subtitle={isBookingFlow
             ? "Choose a design to continue with your booking"
             : "Browse our collection of ready-to-tattoo designs. Choose one you love and book your session."}
           center
         />
-        
+
         {/* Category Filters */}
         <div className="flex flex-wrap justify-center gap-2 mb-12">
           {categories.map(category => (
@@ -87,16 +84,16 @@ function FlashDesignsContent() {
             </button>
           ))}
         </div>
-        
+
         {/* Designs Grid */}
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
           {filteredDesigns.map((design) => (
-            <motion.div 
+            <motion.div
               key={design.id}
               className="relative group overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer"
               variants={itemVariants}
@@ -105,20 +102,20 @@ function FlashDesignsContent() {
               transition={{ duration: 0.2 }}
             >
               <div className="relative h-[300px]">
-                <Image 
+                <Image
                   src={design.image}
                   alt={design.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   width={400}
                   height={300}
                 />
-                
+
                 {/* Price tag */}
                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-purple-700 rounded-full py-1 px-3 font-bold flex items-center">
                   <DollarSign className="w-4 h-4 mr-0.5" />
                   {design.price}
                 </div>
-                
+
                 {/* Availability overlay */}
                 {!design.available && (
                   <div className="absolute inset-0 bg-black/70 flex items-center justify-center">
@@ -127,7 +124,7 @@ function FlashDesignsContent() {
                     </div>
                   </div>
                 )}
-                
+
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
                   <h3 className="text-xl font-bold text-white">{design.title}</h3>
                   <p className="text-gray-200 text-sm mb-2">{design.category}</p>
@@ -139,20 +136,20 @@ function FlashDesignsContent() {
             </motion.div>
           ))}
         </motion.div>
-        
+
         {filteredDesigns.length === 0 && (
           <div className="text-center py-10">
             <p className="text-gray-500">No designs match the selected category.</p>
           </div>
         )}
-        
+
         {!isBookingFlow && (
           <div className="text-center mt-16">
             <p className="text-gray-600 mb-6">
               Love one of our flash designs? Book your appointment to make it yours.
             </p>
-            <Button 
-              variant="gradient" 
+            <Button
+              variant="gradient"
               size="lg"
               onClick={() => router.push('/booking')}
             >
@@ -185,61 +182,61 @@ function FlashDesignsContent() {
               >
                 <X className="h-6 w-6" />
               </button>
-              
+
               <div className="grid md:grid-cols-2">
                 <div className="relative h-[300px] md:h-full">
                   {selectedDesign && (
                     <Image
-                      src={flashDesigns.find(item => item.id === selectedDesign)?.image || ''}
-                      alt={flashDesigns.find(item => item.id === selectedDesign)?.title || ''}
+                      src={readyMadeDesigns.find(item => item.id === selectedDesign)?.image || ''}
+                      alt={readyMadeDesigns.find(item => item.id === selectedDesign)?.title || ''}
                       className="w-full h-full object-cover"
                       width={600}
                       height={800}
                     />
                   )}
                 </div>
-                
+
                 <div className="p-6">
                   {selectedDesign && (
                     <>
                       <h3 className="text-2xl font-bold mb-2">
-                        {flashDesigns.find(item => item.id === selectedDesign)?.title}
+                        {readyMadeDesigns.find(item => item.id === selectedDesign)?.title}
                       </h3>
-                      
+
                       <div className="flex items-center mb-4">
                         <span className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm">
-                          {flashDesigns.find(item => item.id === selectedDesign)?.category}
+                          {readyMadeDesigns.find(item => item.id === selectedDesign)?.category}
                         </span>
                       </div>
-                      
+
                       <div className="mb-6">
                         <p className="text-gray-600 mb-4">
                           This is a unique flash design ready to be tattooed. Flash designs are pre-drawn artwork that can be tattooed as-is or with minor modifications.
                         </p>
-                        
+
                         <div className="flex items-center gap-3 mb-2">
                           <span className="font-bold">Price:</span>
                           <span className="text-xl font-bold text-purple-700">
-                            ${flashDesigns.find(item => item.id === selectedDesign)?.price}
+                            ${readyMadeDesigns.find(item => item.id === selectedDesign)?.price}
                           </span>
                         </div>
-                        
+
                         <div className="flex items-center gap-3">
                           <span className="font-bold">Status:</span>
-                          {flashDesigns.find(item => item.id === selectedDesign)?.available ? (
+                          {readyMadeDesigns.find(item => item.id === selectedDesign)?.available ? (
                             <span className="text-green-600 font-medium">Available</span>
                           ) : (
                             <span className="text-red-600 font-medium">Reserved</span>
                           )}
                         </div>
                       </div>
-                      
-                      {flashDesigns.find(item => item.id === selectedDesign)?.available && (
-                        <Button 
-                          variant="gradient" 
+
+                      {readyMadeDesigns.find(item => item.id === selectedDesign)?.available && (
+                        <Button
+                          variant="gradient"
                           className="w-full"
                           onClick={() => {
-                            const design = flashDesigns.find(item => item.id === selectedDesign);
+                            const design = readyMadeDesigns.find(item => item.id === selectedDesign);
                             handleDesignSelect(design);
                             closeModal();
                           }}
@@ -262,7 +259,7 @@ function FlashDesignsContent() {
 export default function FlashDesigns() {
   return (
     <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
-      <FlashDesignsContent />
+      <ReadyMadeDesignsContent />
     </Suspense>
   );
 }

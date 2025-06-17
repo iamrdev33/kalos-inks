@@ -5,6 +5,7 @@ interface SectionHeadingProps {
   subtitle?: string;
   center?: boolean;
   className?: string;
+  color?: "purple" | "white";
 }
 
 export function SectionHeading({
@@ -12,6 +13,7 @@ export function SectionHeading({
   subtitle,
   center = false,
   className,
+  color = "purple",
 }: SectionHeadingProps) {
   return (
     <div className={cn(
@@ -20,10 +22,10 @@ export function SectionHeading({
       className
     )}>
       <h2 className="text-3xl md:text-4xl font-bold">
-        <span className="gradient-text">{title}</span>
+        <span className={cn("gradient-text-purple", color === "white" && "gradient-text-white")}>{title}</span>
       </h2>
       {subtitle && (
-        <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
+        <p className={cn("mt-4 text-lg text-gray-600 max-w-3xl mx-auto", color === "white" && "text-gray-200")}>
           {subtitle}
         </p>
       )}
