@@ -134,7 +134,7 @@ export default function EducationHub() {
         </motion.div>
         
         {/* FAQ Preview */}
-        <div className="max-w-4xl mx-auto mt-24 p-8 bg-purple-50 rounded-xl">
+        <div className="max-w-4xl mx-auto mt-24 p-8 bg-gray-100 rounded-xl border border-gray-200">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold mb-4">Have Questions?</h2>
             <p className="text-gray-600">
@@ -143,21 +143,21 @@ export default function EducationHub() {
           </div>
           
           <div className="space-y-4">
-            <div className="bg-white p-4 rounded-lg shadow-sm">
+            <div className="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
               <h3 className="text-lg font-medium text-purple-700">How long does a tattoo take to heal?</h3>
               <p className="mt-2 text-gray-600">
                 The surface healing takes about 2-3 weeks, but complete healing beneath the skin can take up to 6 months.
               </p>
             </div>
             
-            <div className="bg-white p-4 rounded-lg shadow-sm">
+            <div className="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
               <h3 className="text-lg font-medium text-purple-700">What should I wear to my tattoo appointment?</h3>
               <p className="mt-2 text-gray-600">
                 Wear loose, comfortable clothing that can easily expose the area being tattooed while maintaining your comfort and modesty.
               </p>
             </div>
             
-            <div className="bg-white p-4 rounded-lg shadow-sm">
+            <div className="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-200">
               <h3 className="text-lg font-medium text-purple-700">Do you offer numbing options?</h3>
               <p className="mt-2 text-gray-600">
                 Yes, we offer topical numbing creams for sensitive areas or longer sessions. Please discuss this with your artist during consultation.

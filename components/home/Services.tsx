@@ -29,7 +29,7 @@ export default function Services() {
   };
 
   return (
-    <section className="section-padding bg-white">
+    <section className="section-padding bg-gray-50">
       <div className="container">
         <SectionHeading 
           title="Our Services" 

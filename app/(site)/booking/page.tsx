@@ -200,7 +200,7 @@ export default function Booking() {
             </p>
 
             {formData.service === "ready-made-design" && selectedDesign && (
-              <div className="mt-6 p-6 bg-purple-50 border border-purple-200 rounded-lg">
+              <div className="mt-6 p-6 bg-gray-100 border border-gray-300 rounded-lg">
                 <h3 className="text-lg font-semibold mb-4">Selected Design</h3>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="relative h-[300px] rounded-lg overflow-hidden">
@@ -414,7 +414,7 @@ export default function Booking() {
                 <div className="mt-6">
                   <h3 className="font-medium mb-2">Your Selection</h3>
                   {formData.date && formData.time ? (
-                    <div className="p-4 bg-purple-50 border border-purple-200 rounded-lg text-center">
+                    <div className="p-4 bg-gray-100 border border-gray-300 rounded-lg text-center">
                       <p className="font-medium text-purple-800">
                         {format(formData.date, "MMMM d, yyyy")} at {formData.time}
                       </p>
@@ -444,7 +444,7 @@ export default function Booking() {
                   <Label htmlFor="name">Full Name</Label>
                   <Input
                     id="name"
-                    name="name"
+                      "border rounded-lg overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-md border-gray-300 bg-gray-50"
                     value={formData.name}
                     onChange={handleInputChange}
                     placeholder="Your full name"

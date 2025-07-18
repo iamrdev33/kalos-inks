@@ -46,7 +46,7 @@ export default function PortfolioPreview() {
   const featuredItems = portfolio.slice(0, 6);
 
   return (
-    <section ref={ref} className="section-padding bg-gray-50">
+    <section ref={ref} className="section-padding bg-gray-100">
       <div className="container">
         <SectionHeading 
           title="Featured Work" 

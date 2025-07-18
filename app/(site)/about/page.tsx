@@ -67,7 +67,7 @@ export default function About() {
       </section>
       
       {/* Story Section */}
-      <section ref={ref} className="py-20 bg-white">
+      <section ref={ref} className="py-20 bg-gray-50">
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -113,7 +113,7 @@ export default function About() {
       </section>
       
       {/* Studio Tour */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-100">
         <div className="container">
           <SectionHeading 
             title="Our Studio" 
@@ -241,7 +241,7 @@ export default function About() {
       </section>
       
       {/* Studio Rules */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-50">
         <div className="container">
           <SectionHeading 
             title="Studio Etiquette" 
@@ -308,7 +308,7 @@ export default function About() {
       </section>
       
       {/* CTA Section */}
-      <section className="py-16 bg-purple-50">
+      <section className="py-16 bg-gray-100">
         <div className="container text-center">
           <h2 className="text-3xl font-bold mb-6">Ready to Start Your Tattoo Journey?</h2>
           <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
